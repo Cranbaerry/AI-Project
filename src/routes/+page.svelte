@@ -93,6 +93,8 @@
 			imageLink = String(result.data);
 			lightboxProgrammaticController.open();
 		}
+
+		loading = false;
 	}
 </script>
 
