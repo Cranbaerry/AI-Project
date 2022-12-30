@@ -30,6 +30,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"html-minifier": "^4.0.0",
 		"svelte-particles": "^2.6.0",
 		"sveltestrap": "^5.10.0",
 		"tsparticles": "^2.6.0"
