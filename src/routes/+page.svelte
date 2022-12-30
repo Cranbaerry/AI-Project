@@ -5,6 +5,8 @@
 	import { Button, Spinner, Input } from 'sveltestrap';
 	import { deserialize } from '$app/forms';
 	import { Lightbox } from 'svelte-lightbox';
+	import { PUBLIC_APP_AUTHOR, PUBLIC_APP_DESCRIPTION, PUBLIC_APP_NAME } from '$env/static/public';
+
 	let particlesOptions = {
 		particles: {
 			number: {
@@ -87,10 +89,9 @@
 			})
 		});
 
-		/** @type {import('@sveltejs/kit').ActionResult} */
-		const result = deserialize(await response.text());
-		if (result.type === 'success') {
-			imageLink = String(result.data);
+		const res = deserialize(await response.text());
+		if (res.type === 'success') {
+			imageLink = String(res.data);
 			lightboxProgrammaticController.open();
 		}
 
@@ -98,20 +99,32 @@
 	}
 </script>
 
+<svelte:head>
+	<title>{PUBLIC_APP_NAME}</title>
+	<meta name="description" content={PUBLIC_APP_DESCRIPTION} />
+	<meta name="author" content={PUBLIC_APP_AUTHOR} />
+</svelte:head>
+
 <Particles id="tsparticles" options={particlesOptions} {particlesInit} />
 
 <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
 	<header class="mb-auto">
-		<div />
+		<div>
+			<!-- <nav class="nav nav-masthead justify-content-center float-md-end">
+				<a class="nav-link" aria-current="page" href="">Home</a>
+				<a class="nav-link" href="https://arxiv.org/abs/2204.06125">Research Paper</a>
+				<a class="nav-link" href="https://openai.com/dall-e-2/">About</a>
+				<a class="nav-link" href="">Source Code</a>
+			</nav> -->
+		</div>
 	</header>
 
 	<main class="px-3">
-		<h1 class="tracking-wide text-2xl font-bold mb-3">
-			Dall-E: <span>Create images from text</span>
-		</h1>
+		<h2 class="tracking-wide text-2xl font-bold mb-3 display-4">
+			{PUBLIC_APP_NAME}
+		</h2>
 		<div class="lead form-text mb-3 text-white">
-			DALL-E is a language model developed by OpenAI that is capable of generating original images
-			from text descriptions, using a combination of machine learning and neural network techniques.
+			{PUBLIC_APP_DESCRIPTION}
 		</div>
 		<p class="lead">
 			<Input bind:value={prompt} type="text" name="text" placeholder="Imagine something.." />
@@ -139,7 +152,39 @@
 		</Lightbox>
 	</main>
 
-	<footer class="mt-auto text-white-50">
-		<p>&copy; Made with ❤️ by Naufal, Daniel, and Yosua 2022</p>
+	<footer class="mt-auto text-white-50 ">
+		<p class="mb-auto d-inline">
+			<a
+				href="https://arxiv.org/abs/2204.06125"
+				class="link-light text-decoration-none"
+				target="_blank"
+				rel="noreferrer">Research Paper</a
+			>
+			&bull;
+			<a
+				href="https://openai.com/dall-e-2/"
+				class="link-light text-decoration-none"
+				target="_blank"
+				rel="noreferrer">About</a
+			>
+			&bull;
+			<a
+				href="https://github.com/Cranbaerry/AI-Project"
+				class="link-light text-decoration-none"
+				target="_blank"
+				rel="noreferrer">Source Code</a
+			>
+		</p>
+		<p class="font-weight-light">
+			Powered by
+			<a
+				href="https://openai.com/dall-e-2/"
+				class="link-light text-decoration-none"
+				target="_blank"
+				rel="noreferrer">DALL·E 2</a
+			>
+			model from OpenAI.<br />
+			<!-- &copy; Made with ❤️ by Naufal, Daniel, and Yosua 2022 -->
+		</p>
 	</footer>
 </div>

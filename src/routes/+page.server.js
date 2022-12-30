@@ -1,8 +1,7 @@
 import { SECRET_API_KEY } from '$env/static/private'
-import { error } from '@sveltejs/kit';
 /** @type {import('./$types').Actions} */
 export const actions = {
-  default: async ({ cookies, request }) => {
+  default: async ({ request }) => {
     const data = await request.formData();
     const prompt = data.get('prompt');
     const response = await fetch('https://api.openai.com/v1/images/generations', {
