@@ -1,4 +1,5 @@
 import { SECRET_API_KEY } from '$env/static/private'
+import { error } from '@sveltejs/kit';
 /** @type {import('./$types').Actions} */
 export const actions = {
   default: async ({ request }) => {
@@ -16,16 +17,18 @@ export const actions = {
           n: 1,
           size: '512x512'
         })
-    }).catch(error => {
-      throw error(404, {
-        message: error
+    }).catch(err => {
+      throw error(500, {
+        message: err
       });
     });;
 
     let result = await response.json();
-    console.log(prompt);
-    console.log(result);
-    console.log(result.data[0].url);
+    if (result.error) {
+      throw error(500, {
+        message: result.error.message
+      });
+    }
 
     return result.data[0].url;
   }

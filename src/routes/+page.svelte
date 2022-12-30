@@ -89,10 +89,13 @@
 			})
 		});
 
-		const res = deserialize(await response.text());
+		const res: any = deserialize(await response.text());
+		console.log(res);
 		if (res.type === 'success') {
 			imageLink = String(res.data);
 			lightboxProgrammaticController.open();
+		} else {
+			alert(res.error.message || 'Something went wrong');
 		}
 
 		loading = false;
@@ -109,14 +112,7 @@
 
 <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
 	<header class="mb-auto">
-		<div>
-			<!-- <nav class="nav nav-masthead justify-content-center float-md-end">
-				<a class="nav-link" aria-current="page" href="">Home</a>
-				<a class="nav-link" href="https://arxiv.org/abs/2204.06125">Research Paper</a>
-				<a class="nav-link" href="https://openai.com/dall-e-2/">About</a>
-				<a class="nav-link" href="">Source Code</a>
-			</nav> -->
-		</div>
+		<div />
 	</header>
 
 	<main class="px-3">
@@ -126,8 +122,14 @@
 		<div class="lead form-text mb-3 text-white">
 			{PUBLIC_APP_DESCRIPTION}
 		</div>
-		<p class="lead">
-			<Input bind:value={prompt} type="text" name="text" placeholder="Imagine something.." />
+		<form on:submit|preventDefault>
+			<Input
+				bind:value={prompt}
+				type="text"
+				name="text"
+				placeholder="Imagine something.."
+				autocomplete="off"
+			/>
 			<Button
 				color="secondary"
 				size="lg"
@@ -137,12 +139,12 @@
 			>
 				{#if loading}
 					<Spinner size="sm" type="grow" />
-					Loading...
+					Brainstorming...
 				{:else}
 					Think about it!
 				{/if}
 			</Button>
-		</p>
+		</form>
 
 		<Lightbox
 			enableFallbackThumbnail={false}
@@ -183,8 +185,13 @@
 				target="_blank"
 				rel="noreferrer">DALL·E 2</a
 			>
-			model from OpenAI.<br />
-			<!-- &copy; Made with ❤️ by Naufal, Daniel, and Yosua 2022 -->
+			model from
+			<a
+				href="https://openai.com"
+				class="link-light text-decoration-none"
+				target="_blank"
+				rel="noreferrer">OpenAI</a
+			>.
 		</p>
 	</footer>
 </div>
