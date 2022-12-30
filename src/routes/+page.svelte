@@ -100,6 +100,127 @@
 
 		loading = false;
 	}
+
+	var listWho = [
+		'An astronaut is',
+		'An alien is',
+		'A doctor is',
+		'A scientist is',
+		'An actor is',
+		'A writer is',
+		'A photographer is',
+		'A pilot is',
+		'You are',
+		'A kid is',
+		'An animal is',
+		'A teacher is',
+		'A police officer is',
+		'A fire fighter is',
+		'A nurse is',
+		'A ninja is',
+		'A dinosaur is',
+		'A robot is'
+	];
+
+	var listWhat = [
+		'sleeping',
+		'walking',
+		'running',
+		'standing',
+		'looking',
+		'exploring',
+		'creating',
+		'writing',
+		'painting',
+		'observing',
+		'jumping',
+		'eating food',
+		'floating',
+		'flying'
+	];
+
+	var listWhere = [
+		'at home',
+		'in an/the office',
+		'in a laboratory',
+		'at a factory',
+		'underwater',
+		'in space',
+		'on an Alien Planet/Moon',
+		'on a Solar System Planet/Moon',
+		'at school',
+		'at the the park',
+		'at the the pool'
+	];
+
+	var listWhen = ['in the past', '', 'in the future', 'during the day', 'at night', 'after school'];
+
+	var listHow = [
+		'in a car',
+		'in a spaceship',
+		'in a rocket',
+		'on a rover',
+		'by a satellite',
+		'in a space station',
+		'by a space station',
+		'on a horse',
+		'in an airplane',
+		'in a firetruck',
+		'in a police car',
+		'on a bicycle',
+		'on a motorcycle',
+		'on a unicycle',
+		'on a dinosaur',
+		'in a boat',
+		'in a seaplane'
+	];
+
+	function getIdeas() {
+		var Who1 = Math.floor(Math.random() * listWho.length);
+		var What1 = Math.floor(Math.random() * listWhat.length);
+		var Where1 = Math.floor(Math.random() * listWhere.length);
+		var When1 = Math.floor(Math.random() * listWhen.length);
+		var How1 = Math.floor(Math.random() * listHow.length);
+
+		return [listWho[Who1], listWhat[What1], listWhere[Where1], listWhen[When1], listHow[How1]]
+			.filter((s) => s)
+			.join(' ')
+			.trim();
+	}
+
+	function handleClickIdea(e: Event) {
+		prompt = getIdeas();
+	}
+
+	let placeholder = '';
+	let text = '';
+	let index = 0;
+	let isDoneTyping = false;
+
+	function typeWriter() {
+		if (index < text.length) {
+			isDoneTyping = false;
+			placeholder += text.charAt(index);
+			index++;
+			setTimeout(typeWriter, 50);
+		} else {
+			isDoneTyping = true;
+		}
+	}
+
+	$: if (isDoneTyping) {
+		setTimeout(startTyping, 3000);
+	}
+
+	function startTyping() {
+		console.log('Start typing again..');
+		placeholder = '';
+		text = getIdeas();
+		index = 0;
+		typeWriter();
+	}
+
+	startTyping();
 </script>
 
 <svelte:head>
@@ -123,13 +244,20 @@
 			{PUBLIC_APP_DESCRIPTION}
 		</div>
 		<form on:submit|preventDefault>
-			<Input
-				bind:value={prompt}
-				type="text"
-				name="text"
-				placeholder="Imagine something.."
-				autocomplete="off"
-			/>
+			<div class="input-group mb-3">
+				<Input
+					bind:value={prompt}
+					type="text"
+					name="text"
+					{placeholder}
+					autocomplete="off"
+					id="prompt"
+					autofocus
+				/>
+
+				<Button color="secondary" type="button" on:click={() => prompt = getIdeas() }>💭</Button>
+			</div>
+
 			<Button
 				color="secondary"
 				size="lg"
@@ -164,17 +292,17 @@
 			>
 			&bull;
 			<a
-				href="https://openai.com/dall-e-2/"
-				class="link-light text-decoration-none"
-				target="_blank"
-				rel="noreferrer">About</a
-			>
-			&bull;
-			<a
 				href="https://github.com/Cranbaerry/AI-Project"
 				class="link-light text-decoration-none"
 				target="_blank"
 				rel="noreferrer">Source Code</a
+			>
+			&bull;
+			<a
+				href="https://openai.com/dall-e-2/"
+				class="link-light text-decoration-none"
+				target="_blank"
+				rel="noreferrer">About</a
 			>
 		</p>
 		<p class="font-weight-light">

@@ -30,6 +30,8 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"bootstrap": "^5.2.3",
+		"bs5-lightbox": "^1.8.2",
 		"html-minifier": "^4.0.0",
 		"svelte-particles": "^2.6.0",
 		"sveltestrap": "^5.10.0",
