@@ -101,91 +101,110 @@
 		loading = false;
 	}
 
-	var listWho = [
-		'An astronaut is',
-		'An alien is',
-		'A doctor is',
-		'A scientist is',
-		'An actor is',
-		'A writer is',
-		'A photographer is',
-		'A pilot is',
-		'You are',
-		'A kid is',
-		'An animal is',
-		'A teacher is',
-		'A police officer is',
-		'A fire fighter is',
-		'A nurse is',
-		'A ninja is',
-		'A dinosaur is',
-		'A robot is'
-	];
+	// var listWho = [
+	// 	'An astronaut is',
+	// 	'An alien is',
+	// 	'A doctor is',
+	// 	'A scientist is',
+	// 	'An actor is',
+	// 	'A writer is',
+	// 	'A photographer is',
+	// 	'A pilot is',
+	// 	'You are',
+	// 	'A kid is',
+	// 	'An animal is',
+	// 	'A teacher is',
+	// 	'A police officer is',
+	// 	'A fire fighter is',
+	// 	'A nurse is',
+	// 	'A ninja is',
+	// 	'A dinosaur is',
+	// 	'A robot is'
+	// ];
 
-	var listWhat = [
-		'sleeping',
-		'walking',
-		'running',
-		'standing',
-		'looking',
-		'exploring',
-		'creating',
-		'writing',
-		'painting',
-		'observing',
-		'jumping',
-		'eating food',
-		'floating',
-		'flying'
-	];
+	// var listWhat = [
+	// 	'sleeping',
+	// 	'walking',
+	// 	'running',
+	// 	'standing',
+	// 	'looking',
+	// 	'exploring',
+	// 	'creating',
+	// 	'writing',
+	// 	'painting',
+	// 	'observing',
+	// 	'jumping',
+	// 	'eating food',
+	// 	'floating',
+	// 	'flying'
+	// ];
 
-	var listWhere = [
-		'at home',
-		'in an/the office',
-		'in a laboratory',
-		'at a factory',
-		'underwater',
-		'in space',
-		'on an Alien Planet/Moon',
-		'on a Solar System Planet/Moon',
-		'at school',
-		'at the the park',
-		'at the the pool'
-	];
+	// var listWhere = [
+	// 	'at home',
+	// 	'in an/the office',
+	// 	'in a laboratory',
+	// 	'at a factory',
+	// 	'underwater',
+	// 	'in space',
+	// 	'on an Alien Planet/Moon',
+	// 	'on a Solar System Planet/Moon',
+	// 	'at school',
+	// 	'at the the park',
+	// 	'at the the pool'
+	// ];
 
-	var listWhen = ['in the past', '', 'in the future', 'during the day', 'at night', 'after school'];
+	// var listWhen = ['in the past', '', 'in the future', 'during the day', 'at night', 'after school'];
 
-	var listHow = [
-		'in a car',
-		'in a spaceship',
-		'in a rocket',
-		'on a rover',
-		'by a satellite',
-		'in a space station',
-		'by a space station',
-		'on a horse',
-		'in an airplane',
-		'in a firetruck',
-		'in a police car',
-		'on a bicycle',
-		'on a motorcycle',
-		'on a unicycle',
-		'on a dinosaur',
-		'in a boat',
-		'in a seaplane'
+	// var listHow = [
+	// 	'in a car',
+	// 	'in a spaceship',
+	// 	'in a rocket',
+	// 	'on a rover',
+	// 	'by a satellite',
+	// 	'in a space station',
+	// 	'by a space station',
+	// 	'on a horse',
+	// 	'in an airplane',
+	// 	'in a firetruck',
+	// 	'in a police car',
+	// 	'on a bicycle',
+	// 	'on a motorcycle',
+	// 	'on a unicycle',
+	// 	'on a dinosaur',
+	// 	'in a boat',
+	// 	'in a seaplane'
+	// ];
+
+	// function getIdeas() {
+	// 	var Who1 = Math.floor(Math.random() * listWho.length);
+	// 	var What1 = Math.floor(Math.random() * listWhat.length);
+	// 	var Where1 = Math.floor(Math.random() * listWhere.length);
+	// 	var When1 = Math.floor(Math.random() * listWhen.length);
+	// 	var How1 = Math.floor(Math.random() * listHow.length);
+
+	// 	return [listWho[Who1], listWhat[What1], listWhere[Where1], listWhen[When1], listHow[How1]]
+	// 		.filter((s) => s)
+	// 		.join(' ')
+	// 		.trim();
+	// }
+
+	var examples = [
+		'My indian dad accidentally taking a selfie with the front camera, squinting because the camera flash is so bright in his face',
+		'Girl Santa, fantasy, soft neon lights, manga comic book style with MJ and photoshop',
+		'A portrait of a dog in a library, Sigma 85mm f/1.4',
+		'A painting of a fox sitting in a field at sunrise in the style of Claude Monet',
+		'Smiling woman with rainbow hair and rainbow makeup, viscous rainbow paint, rainbow bg, portrait',
+		'15mm wide-angle lens photo of a rapper in 1990 New York holding a kitten up to the camera',
+		'A cat sitting in a chair, wearing a pair of sunglasses by Norman Rockwell',
+		'Fantasy tavern interior, breath-taking digital painting with warm colours amazing art mesmerizing, captivating, artstation 3',
+		'Cluttered house in the woods, anime oil painting high resolution cottagecore ghibli inspired 4k',
+		'German palace gardens and towers, oil painting, trending in artstation, anime',
+		'A digital illustration of glowing toadstools beside a pond with lilypads, 4k, detailed, trending in artstation'
 	];
 
 	function getIdeas() {
-		var Who1 = Math.floor(Math.random() * listWho.length);
-		var What1 = Math.floor(Math.random() * listWhat.length);
-		var Where1 = Math.floor(Math.random() * listWhere.length);
-		var When1 = Math.floor(Math.random() * listWhen.length);
-		var How1 = Math.floor(Math.random() * listHow.length);
-
-		return [listWho[Who1], listWhat[What1], listWhere[Where1], listWhen[When1], listHow[How1]]
-			.filter((s) => s)
-			.join(' ')
-			.trim();
+		var rng = Math.floor(Math.random() * examples.length);
+		return examples[rng];
 	}
 
 	function handleClickIdea(e: Event) {
@@ -255,7 +274,7 @@
 					autofocus
 				/>
 
-				<Button color="secondary" type="button" on:click={() => prompt = getIdeas() }>💭</Button>
+				<Button color="secondary" type="button" on:click={() => (prompt = getIdeas())}>💭</Button>
 			</div>
 
 			<Button
